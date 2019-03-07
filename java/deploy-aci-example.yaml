@@ -1,0 +1,59 @@
+apiVersion: 2018-06-01
+location: eastus
+#name: aci-test
+properties:
+  containers:
+  - name: application
+    properties:
+      image: $image
+      #image: aaronmsft/microsweeper-demo:latest
+      environmentVariables:
+        - name: JAEGER_SERVICE_NAME
+          value: 'microsweeper'
+        #- name: JAEGER_AGENT_HOST
+        #  value: jaeger-all-in-one-agent
+        - name: JAEGER_SAMPLER_TYPE
+          value: 'const'
+        - name: JAEGER_SAMPLER_PARAM
+          value: '1'
+        - name: 'JAEGER_REPORTER_LOG_SPANS'
+          value: 'true'
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.0
+      ports:
+      - port: 8080
+  - name: jaeger
+    properties:
+      image: jaegertracing/all-in-one:latest
+      environmentVariables:
+        - name: 'TEST'
+          value: ''
+      resources:
+        requests:
+          cpu: 1
+          memoryInGb: 1.0
+      ports:
+      - port: 9411
+      - port: 5775
+      - port: 6831
+      - port: 6832
+      - port: 5778
+      - port: 16686
+      - port: 14268
+  osType: Linux
+  ipAddress:
+    type: Public
+    dnsNameLabel: $dnsNameLabel
+    ports:
+    - protocol: tcp
+      port: 8080
+    - protocol: tcp
+      port: 16686
+  imageRegistryCredentials:
+  - server: $server
+    username: $username
+    password: $password
+tags: null
+type: Microsoft.ContainerInstance/containerGroups
