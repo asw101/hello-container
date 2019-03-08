@@ -10,11 +10,11 @@ RUN cargo build --release
 # Copy sources
 COPY src src
 COPY *.toml ./
-# Build app (bin will be in /usr/src/app/target/debug/hello-rocket)
+# Build app (bin will be in /usr/src/app/target/release/hello-rocket)
 RUN cargo build --release
 
 FROM debian:stretch-slim
 # Copy bin from builder to this new image
-COPY --from=builder /usr/src/app/target/debug/hello-rocket /bin/
+COPY --from=builder /usr/src/app/target/release/hello-rocket /bin/
 # Default command, run app
 CMD hello-rocket
