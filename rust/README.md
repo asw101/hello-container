@@ -54,4 +54,4 @@ docker run --rm -p 8080:3000 -it hello-rust
 - https://github.com/SergioBenitez/Rocket/tree/v0.4/examples/hello_world
 - https://hyper.rs/guides/server/hello-world/
 - https://api.rocket.rs/v0.3/rocket/config/
-https://blog.jawg.io/docker-multi-stage-build/
+- https://blog.jawg.io/docker-multi-stage-build/
