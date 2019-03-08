@@ -13,7 +13,7 @@ fn hello_world(_req: Request<Body>) -> Response<Body> {
 
 fn main() {
     // This is our socket address...
-    let addr = ([127, 0, 0, 1], 3000).into();
+    let addr = ([0, 0, 0, 0], 3000).into();
 
     // A `Service` is needed for every connection, so this
     // creates one from our `hello_world` function.
