@@ -1,4 +1,6 @@
-FROM rust:nightly as builder
+FROM rust:latest as builder
+RUN rustup update nightly \
+    && rustup default nightly
 WORKDIR /app
 COPY . .
 RUN cargo build --release 
