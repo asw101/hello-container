@@ -59,4 +59,5 @@ jobs:
           --docker-registry-server-url https://${REGISTRY_NAME}.azurecr.io \
           --docker-registry-server-user ${REGISTRY_NAME} \
           --docker-registry-server-password ${REGISTRY_PASSWORD}
+        echo "https://web${RANDOM_STR}.azurewebsites.net"
         
