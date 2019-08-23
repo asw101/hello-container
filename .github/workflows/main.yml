@@ -15,4 +15,6 @@ jobs:
         REGISTRY_NAME='acr82ffdb'
         az acr create -g $RESOURCE_GROUP -l $LOCATION --name $REGISTRY_NAME --sku Basic
         az acr login -n $REGISTRY_NAME
-        az container list
+        cd golang/
+        az acr build -r $REGISTRY_NAME -t hello-golang --file Dockerfile .
+        #az container list
