@@ -19,5 +19,5 @@ jobs:
         az acr create -g $RESOURCE_GROUP -l $LOCATION --name $REGISTRY_NAME --sku Basic --admin-enabled true
         az acr login -n $REGISTRY_NAME
         cd $GITHUB_WORKSPACE/golang/
-        az acr build -r $REGISTRY_NAME -t hello-golang:${{ github.sha }} --file Dockerfile .
+        az acr build -r $REGISTRY_NAME -t hello-golang:$(date +%y%m%d)-${{ github.sha }} --file Dockerfile .
         #az container list
