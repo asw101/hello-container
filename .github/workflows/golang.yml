@@ -52,6 +52,7 @@ jobs:
       run: | 
         REGISTRY_NAME="acr${RANDOM_STR}"
         REGISTRY_PASSWORD=$(az acr credential show -n $REGISTRY_NAME | jq -r .passwords[0].value)
+        CONTAINER_IMAGE=hello-golang:$(date +%y%m%d)-${{ github.sha }}
         az webapp config container set \
           --resource-group $RESOURCE_GROUP \
           --name "web${RANDOM_STR}" \
