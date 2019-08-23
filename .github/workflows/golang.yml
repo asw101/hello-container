@@ -15,7 +15,7 @@ jobs:
     - uses: azure/actions/login@master
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: acr create + build
+    - name: acr create, acr build, container create
       env:
         RESOURCE_GROUP: 190800-actions
         LOCATION: eastus
