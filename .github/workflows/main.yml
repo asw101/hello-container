@@ -18,7 +18,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/golang/
         # create container registry
-        REGISTRY_NAME="acr${RANDOM_STR}""
+        REGISTRY_NAME="acr${RANDOM_STR}"
         az acr create -g $RESOURCE_GROUP -l $LOCATION --name $REGISTRY_NAME --sku Basic --admin-enabled true
         # build image
         CONTAINER_IMAGE=hello-golang:$(date +%y%m%d)-${{ github.sha }}
