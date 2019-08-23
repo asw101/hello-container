@@ -44,3 +44,19 @@ jobs:
             --dns-name-label $CONTAINER_NAME
         FQDN=$(az container show -g $RESOURCE_GROUP --name $CONTAINER_NAME | jq -r .ipAddress.fqdn)
         echo "http://${FQDN}"
+    - name: webapp config
+      env:
+        RESOURCE_GROUP: 190800-actions
+        LOCATION: eastus
+        RANDOM_STR: 82ffdb
+      run: | 
+        REGISTRY_NAME="acr${RANDOM_STR}"
+        REGISTRY_PASSWORD=$(az acr credential show -n $REGISTRY_NAME | jq -r .passwords[0].value)
+        az webapp config container set \
+          --resource-group $RESOURCE_GROUP
+          --name "web${RANDOM_STR}" \
+          --docker-custom-image-name "${REGISTRY_NAME}.azurecr.io/${CONTAINER_IMAGE}" \
+          --docker-registry-server-url https://${REGISTRY_NAME}.azurecr.io \
+          --docker-registry-server-user ${REGISTRY_NAME} \
+          --docker-registry-server-password ${REGISTRY_PASSWORD}
+        
