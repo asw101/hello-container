@@ -1,9 +1,11 @@
-name: CI
+name: golang
 
 on:
   push:
     branches:
-    - dev
+    - master
+    paths:
+    - golang/*
 
 jobs:
   build-and-deploy:
