@@ -11,14 +11,13 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
     - name: acr create + build
+      env:
+        RESOURCE_GROUP: 190800-actions
+        LOCATION: eastus
+        REGISTRY_NAME: acr82ffdb
       run: |
-        RESOURCE_GROUP='190800-actions'
-        LOCATION='eastus'
-        REGISTRY_NAME='acr82ffdb'
         az acr create -g $RESOURCE_GROUP -l $LOCATION --name $REGISTRY_NAME --sku Basic
         az acr login -n $REGISTRY_NAME
-        cd $GITHUB_WORKSPACE
-        find .
-        #cd golang/
-        #az acr build -r $REGISTRY_NAME -t hello-golang --file Dockerfile .
+        cd $GITHUB_WORKSPACE/golang/
+        az acr build -r $REGISTRY_NAME -t hello-golang:${{ github.sha }} --file Dockerfile .
         #az container list
