@@ -18,7 +18,7 @@
         <fabric8.openshift.trimImageInContainerSpec>true</fabric8.openshift.trimImageInContainerSpec>
         <fabric8.skip.build.pom>true</fabric8.skip.build.pom>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.h2>1.4.187</version.h2>
+        <version.h2>2.1.210</version.h2>
     </properties>
 
     <dependencyManagement>
